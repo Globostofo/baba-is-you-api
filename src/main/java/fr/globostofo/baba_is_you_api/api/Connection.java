@@ -8,4 +8,8 @@ public class Connection extends Block {
         this.type = type;
     }
 
+    public ConnectionType getType() {
+        return type;
+    }
+
 }
