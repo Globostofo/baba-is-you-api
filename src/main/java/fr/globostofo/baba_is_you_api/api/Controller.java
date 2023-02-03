@@ -4,7 +4,8 @@ public class Controller extends Block {
 
     private EntityType type;
 
-    public Controller(EntityType type) {
+    public Controller(int row, int col, EntityType type) {
+        super(row, col);
         this.type = type;
     }
 

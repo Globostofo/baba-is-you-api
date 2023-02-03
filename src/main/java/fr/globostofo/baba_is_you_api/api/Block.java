@@ -2,23 +2,28 @@ package fr.globostofo.baba_is_you_api.api;
 
 public abstract class Block {
 
-    private int x;
-    private int y;
+    private int row;
+    private int col;
 
-    public int getX() {
-        return x;
+    public Block(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public int getRow() {
+        return row;
     }
 
-    public int getY() {
-        return y;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
     }
 
 }

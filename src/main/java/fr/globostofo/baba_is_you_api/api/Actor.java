@@ -4,7 +4,8 @@ public class Actor extends Block {
 
     private EntityType type;
 
-    public Actor(EntityType type) {
+    public Actor(int row, int col, EntityType type) {
+        super(row, col);
         this.type = type;
     }
 

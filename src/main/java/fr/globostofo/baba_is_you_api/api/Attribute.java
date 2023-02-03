@@ -4,7 +4,8 @@ public class Attribute extends Block {
 
     private AttributeType type;
 
-    public Attribute(AttributeType type) {
+    public Attribute(int row, int col, AttributeType type) {
+        super(row, col);
         this.type = type;
     }
 
