@@ -13,4 +13,8 @@ public class Controller extends Block {
         return type;
     }
 
+    @Override
+    public String toString() {
+        return type.name();
+    }
 }

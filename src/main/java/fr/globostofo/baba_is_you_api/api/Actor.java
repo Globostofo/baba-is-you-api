@@ -12,4 +12,9 @@ public class Actor extends Block {
     public EntityType getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return type.name();
+    }
 }

@@ -13,4 +13,8 @@ public class Connection extends Block {
         return type;
     }
 
+    @Override
+    public String toString() {
+        return type.name();
+    }
 }
