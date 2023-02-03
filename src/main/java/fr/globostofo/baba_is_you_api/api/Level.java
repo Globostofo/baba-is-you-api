@@ -10,15 +10,39 @@ public class Level {
     private final int rows;
     private final int cols;
     private final Block[][] grid;
-    private final Map<EntityType, ArrayList<Controller>> controllersMap = new HashMap<>();
-    private final Map<EntityType, ArrayList<Actor>> actorsMap = new HashMap<>();
-    private final Map<EntityType, ArrayList<Connection>> connectionsMap = new HashMap<>();
-    private final Map<EntityType, ArrayList<Attribute>> attributesMap = new HashMap<>();
+    private final BlocksManager<EntityType, Controller> controllers = new BlocksManager<>();
+    private final BlocksManager<EntityType, Actor> actors = new BlocksManager<>();
+    private final BlocksManager<ConnectionType, Connection> connections = new BlocksManager<>();
+    private final BlocksManager<AttributeType, Attribute> attributes = new BlocksManager<>();
 
     public Level(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         this.grid = new Block[rows][cols];
+    }
+
+    public void addController(int row, int col, EntityType type) {
+        Controller controller = new Controller(row, col, type);
+        grid[row][col] = controller;
+        controllers.put(type, controller);
+    }
+
+    public void addActor(int row, int col, EntityType type) {
+        Actor actor = new Actor(row, col, type);
+        grid[row][col] = actor;
+        actors.put(type, actor);
+    }
+
+    public void addConnection(int row, int col, ConnectionType type) {
+        Connection connection = new Connection(row, col, type);
+        grid[row][col] = connection;
+        connections.put(type, connection);
+    }
+
+    public void addAttribute(int row, int col, AttributeType type) {
+        Attribute attribute = new Attribute(row, col, type);
+        grid[row][col] = attribute;
+        attributes.put(type, attribute);
     }
 
     @Override
