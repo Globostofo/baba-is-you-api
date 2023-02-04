@@ -13,6 +13,10 @@ public class Controller extends Block {
         return type;
     }
 
+    public void setType(EntityType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return type.name();

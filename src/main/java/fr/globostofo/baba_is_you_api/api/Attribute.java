@@ -13,6 +13,10 @@ public class Attribute extends Block {
         return type;
     }
 
+    public void setType(AttributeType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return type.name();

@@ -13,6 +13,10 @@ public class Connection extends Block {
         return type;
     }
 
+    public void setType(ConnectionType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return type.name();
