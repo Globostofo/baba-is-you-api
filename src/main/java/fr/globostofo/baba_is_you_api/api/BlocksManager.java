@@ -1,23 +1,25 @@
 package fr.globostofo.baba_is_you_api.api;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BlocksManager<K, V extends Block> {
 
-    private final Map<K, List<V>> map = new HashMap<>();
+    private final Map<K, Set<V>> map = new HashMap<>();
 
     public void put(K key, V value) {
-        System.out.println(map);
         if (map.containsKey(key)) map.get(key).add(value);
-        else {
-            map.put(key, new ArrayList<>() {{add(value);}});
-        }
+        else map.put(key, new HashSet<>() {{add(value);}});
     }
 
-    public List<V> getList(K key) {
+    public void putAll(K key, Collection<V> c) {
+        map.get(key).addAll(c);
+    }
+
+    public void removeAll(K key) {
+        map.get(key).clear();
+    }
+
+    public Set<V> getAll(K key) {
         return map.get(key);
     }
 
