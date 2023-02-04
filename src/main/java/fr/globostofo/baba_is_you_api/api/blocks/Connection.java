@@ -1,4 +1,6 @@
-package fr.globostofo.baba_is_you_api.api;
+package fr.globostofo.baba_is_you_api.api.blocks;
+
+import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
 
 public class Connection extends Block {
 

@@ -1,5 +1,7 @@
 package fr.globostofo.baba_is_you_api.api;
 
+import fr.globostofo.baba_is_you_api.api.blocks.Block;
+
 import java.util.*;
 
 public class BlocksManager<K, V extends Block> {

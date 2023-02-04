@@ -1,6 +1,9 @@
 package fr.globostofo.baba_is_you_api;
 
 import fr.globostofo.baba_is_you_api.api.*;
+import fr.globostofo.baba_is_you_api.api.blocks.types.AttributeType;
+import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
+import fr.globostofo.baba_is_you_api.api.blocks.types.EntityType;
 
 public class Main {
 

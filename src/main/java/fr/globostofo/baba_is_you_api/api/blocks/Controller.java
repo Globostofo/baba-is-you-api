@@ -1,10 +1,12 @@
-package fr.globostofo.baba_is_you_api.api;
+package fr.globostofo.baba_is_you_api.api.blocks;
 
-public class Actor extends Block {
+import fr.globostofo.baba_is_you_api.api.blocks.types.EntityType;
+
+public class Controller extends Block {
 
     private EntityType type;
 
-    public Actor(int row, int col, EntityType type) {
+    public Controller(int row, int col, EntityType type) {
         super(row, col);
         this.type = type;
     }

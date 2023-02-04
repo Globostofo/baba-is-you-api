@@ -1,5 +1,10 @@
 package fr.globostofo.baba_is_you_api.api;
 
+import fr.globostofo.baba_is_you_api.api.blocks.*;
+import fr.globostofo.baba_is_you_api.api.blocks.types.AttributeType;
+import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
+import fr.globostofo.baba_is_you_api.api.blocks.types.EntityType;
+
 import java.util.Arrays;
 
 public class Level {
