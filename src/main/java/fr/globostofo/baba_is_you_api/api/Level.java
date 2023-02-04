@@ -17,6 +17,8 @@ public class Level {
     private final BlocksManager<ConnectionType, Connection> connections = new BlocksManager<>();
     private final BlocksManager<AttributeType, Attribute> attributes = new BlocksManager<>();
 
+    private final RulesManager rules = new RulesManager();
+
     public Level(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -47,6 +49,10 @@ public class Level {
         attributes.put(type, attribute);
     }
 
+    public void start() {
+        computeRules();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Level {");
@@ -56,6 +62,10 @@ public class Level {
             sb.append("\n\t").append(Arrays.toString(row));
         sb.append("\n}");
         return sb.toString();
+    }
+
+    private void computeRules() {
+
     }
 
     private void replaceActors(EntityType from, EntityType to) {
