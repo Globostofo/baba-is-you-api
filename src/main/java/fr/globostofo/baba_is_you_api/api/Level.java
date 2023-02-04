@@ -6,16 +6,19 @@ import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
 import fr.globostofo.baba_is_you_api.api.blocks.types.EntityType;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Level {
 
     private final int rows;
     private final int cols;
     private final Block[][] grid;
-    private final BlocksManager<EntityType, Controller> controllers = new BlocksManager<>();
+//    private final BlocksManager<EntityType, Controller> controllers = new BlocksManager<>();
     private final BlocksManager<EntityType, Actor> actors = new BlocksManager<>();
-    private final BlocksManager<ConnectionType, Connection> connections = new BlocksManager<>();
-    private final BlocksManager<AttributeType, Attribute> attributes = new BlocksManager<>();
+//    private final BlocksManager<ConnectionType, Connection> connections = new BlocksManager<>();
+//    private final BlocksManager<AttributeType, Attribute> attributes = new BlocksManager<>();
+    private final Set<Connection> isBlocks = new HashSet<>();
 
     private final RulesManager rules = new RulesManager();
 
@@ -28,7 +31,7 @@ public class Level {
     public void addController(int row, int col, EntityType type) {
         Controller controller = new Controller(row, col, type);
         grid[row][col] = controller;
-        controllers.put(type, controller);
+//        controllers.add(controller);
     }
 
     public void addActor(int row, int col, EntityType type) {
@@ -40,13 +43,14 @@ public class Level {
     public void addConnection(int row, int col, ConnectionType type) {
         Connection connection = new Connection(row, col, type);
         grid[row][col] = connection;
-        connections.put(type, connection);
+//        connections.put(type, connection);
+        if (type == ConnectionType.IS) isBlocks.add(connection);
     }
 
     public void addAttribute(int row, int col, AttributeType type) {
         Attribute attribute = new Attribute(row, col, type);
         grid[row][col] = attribute;
-        attributes.put(type, attribute);
+//        attributes.put(type, attribute);
     }
 
     public void start() {
