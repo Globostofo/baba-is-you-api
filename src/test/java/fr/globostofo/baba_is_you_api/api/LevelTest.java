@@ -9,7 +9,7 @@ class LevelTest {
     @Test
     void testLevel() {
         Level lvl = new Level(2, 3);
-        assertEquals("Level {\n\trows = 2\n\tcols = 3\n\t[null, null, null]\n\t[null, null, null]\n}", lvl.toString());
+        assertEquals("Level {\n\trows = 2\n\tcols = 3\n[null, null, null]\n[null, null, null]\n}", lvl.toString());
     }
 
 }
