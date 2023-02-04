@@ -1,9 +1,6 @@
 package fr.globostofo.baba_is_you_api.api;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Level {
 
@@ -55,4 +52,12 @@ public class Level {
         sb.append("\n}");
         return sb.toString();
     }
+
+    private void replaceActors(EntityType from, EntityType to) {
+        for (Actor a: actors.getAll(from))
+            a.setType(to);
+        actors.putAll(to, actors.getAll(from));
+        actors.removeAll(from);
+    }
+
 }
