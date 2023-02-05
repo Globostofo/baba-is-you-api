@@ -1,13 +1,14 @@
 package fr.globostofo.baba_is_you_api.api.blocks;
 
+import fr.globostofo.baba_is_you_api.api.Vector2;
 import fr.globostofo.baba_is_you_api.api.blocks.types.AttributeType;
 
 public class Attribute extends Block {
 
     private AttributeType type;
 
-    public Attribute(int row, int col, AttributeType type) {
-        super(row, col);
+    public Attribute(Vector2 position, AttributeType type) {
+        super(position);
         this.type = type;
     }
 
@@ -23,4 +24,5 @@ public class Attribute extends Block {
     public String toString() {
         return type.name();
     }
+
 }

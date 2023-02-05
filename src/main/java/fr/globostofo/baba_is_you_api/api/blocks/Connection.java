@@ -1,13 +1,14 @@
 package fr.globostofo.baba_is_you_api.api.blocks;
 
+import fr.globostofo.baba_is_you_api.api.Vector2;
 import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
 
 public class Connection extends Block {
 
     private ConnectionType type;
 
-    public Connection(int row, int col, ConnectionType type) {
-        super(row, col);
+    public Connection(Vector2 position, ConnectionType type) {
+        super(position);
         this.type = type;
     }
 
@@ -23,4 +24,5 @@ public class Connection extends Block {
     public String toString() {
         return type.name();
     }
+
 }

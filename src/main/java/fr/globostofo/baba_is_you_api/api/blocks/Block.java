@@ -1,29 +1,21 @@
 package fr.globostofo.baba_is_you_api.api.blocks;
 
+import fr.globostofo.baba_is_you_api.api.Vector2;
+
 public abstract class Block {
 
-    private int row;
-    private int col;
+    private Vector2 position;
 
-    public Block(int row, int col) {
-        this.row = row;
-        this.col = col;
+    public Block(Vector2 position) {
+        this.position = position;
     }
 
-    public int getRow() {
-        return row;
+    public Vector2 getPosition() {
+        return position;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 
 }

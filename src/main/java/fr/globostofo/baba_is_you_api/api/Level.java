@@ -20,32 +20,32 @@ public class Level {
 
     private final RulesManager rules = new RulesManager();
 
-    public Level(int rows, int cols) {
-        grid = new Grid(rows, cols);
+    public Level(Vector2 size) {
+        grid = new Grid(size);
     }
 
-    public void addController(int row, int col, EntityType type) {
-        Controller controller = new Controller(row, col, type);
-        grid.set(row, col, controller);
+    public void addController(Vector2 position, EntityType type) {
+        Controller controller = new Controller(position, type);
+        grid.set(position, controller);
 //        controllers.add(controller);
     }
 
-    public void addActor(int row, int col, EntityType type) {
-        Actor actor = new Actor(row, col, type);
-        grid.set(row, col, actor);
+    public void addActor(Vector2 position, EntityType type) {
+        Actor actor = new Actor(position, type);
+        grid.set(position, actor);
         actors.put(type, actor);
     }
 
-    public void addConnection(int row, int col, ConnectionType type) {
-        Connection connection = new Connection(row, col, type);
-        grid.set(row, col, connection);
+    public void addConnection(Vector2 position, ConnectionType type) {
+        Connection connection = new Connection(position, type);
+        grid.set(position, connection);
 //        connections.put(type, connection);
         if (type == ConnectionType.IS) isBlocks.add(connection);
     }
 
-    public void addAttribute(int row, int col, AttributeType type) {
-        Attribute attribute = new Attribute(row, col, type);
-        grid.set(row, col, attribute);
+    public void addAttribute(Vector2 position, AttributeType type) {
+        Attribute attribute = new Attribute(position, type);
+        grid.set(position, attribute);
 //        attributes.put(type, attribute);
     }
 
@@ -55,8 +55,7 @@ public class Level {
 
     @Override
     public String toString() {
-        return "Level {\n\trows = " + grid.getRows() +
-                "\n\tcols = " + grid.getCols() +
+        return "Level {\n\tsize=" + grid.size +
                 grid +
                 '\n' + rules +
                 "\n}";
@@ -64,16 +63,37 @@ public class Level {
 
     private void computeRules() {
         for (Connection isBlock: isBlocks) {
-            Map<Direction, Block> around = grid.getAround(isBlock.getRow(), isBlock.getCol());
-            if (around.get(Direction.TOP) != null && around.get(Direction.TOP).getClass() == Controller.class && around.get(Direction.BOTTOM) != null && around.get(Direction.BOTTOM).getClass() == Attribute.class) {
-                Controller c = (Controller) around.get(Direction.TOP);
-                Attribute a = (Attribute) around.get(Direction.BOTTOM);
-                rules.addRule(c.getType(), a.getType());
+            Vector2 vUp = isBlock.getPosition().add(Vector2.UP);
+            Vector2 vDown = isBlock.getPosition().add(Vector2.DOWN);
+            Vector2 vLeft = isBlock.getPosition().add(Vector2.LEFT);
+            Vector2 vRight = isBlock.getPosition().add(Vector2.RIGHT);
+            // Vertical check
+            if (grid.isInsideGrid(vUp) && grid.isInsideGrid(vDown)) {
+                Block up = grid.get(vUp);
+                Block down = grid.get(vDown);
+                if (up != null && down != null) {
+                    if (up.getClass() == Controller.class) {
+                        if (down.getClass() == Attribute.class) {
+                            Controller c = (Controller) up;
+                            Attribute a = (Attribute) down;
+                            rules.addRule(c.getType(), a.getType());
+                        }
+                    }
+                }
             }
-            if (around.get(Direction.LEFT) != null && around.get(Direction.LEFT).getClass() == Controller.class && around.get(Direction.RIGHT) != null && around.get(Direction.RIGHT).getClass() == Attribute.class) {
-                Controller c = (Controller) around.get(Direction.LEFT);
-                Attribute a = (Attribute) around.get(Direction.RIGHT);
-                rules.addRule(c.getType(), a.getType());
+            // Horizontal check
+            if (grid.isInsideGrid(vLeft) && grid.isInsideGrid(vRight)) {
+                Block left = grid.get(vLeft);
+                Block right = grid.get(vRight);
+                if (left != null && right != null) {
+                    if (left.getClass() == Controller.class) {
+                        if (right.getClass() == Attribute.class) {
+                            Controller c = (Controller) left;
+                            Attribute a = (Attribute) right;
+                            rules.addRule(c.getType(), a.getType());
+                        }
+                    }
+                }
             }
         }
     }
