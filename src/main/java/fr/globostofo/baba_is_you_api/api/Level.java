@@ -4,7 +4,6 @@ import fr.globostofo.baba_is_you_api.api.blocks.*;
 import fr.globostofo.baba_is_you_api.api.blocks.types.AttributeType;
 import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
 import fr.globostofo.baba_is_you_api.api.blocks.types.EntityType;
-import org.w3c.dom.Attr;
 
 import java.util.HashSet;
 import java.util.Map;

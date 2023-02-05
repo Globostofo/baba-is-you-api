@@ -18,6 +18,10 @@ public class Grid {
         grid = new Block[rows][cols];
     }
 
+    public boolean isInsideGrid(int row, int col) {
+        return 0 <= row && row < rows && 0 <= col && col < cols;
+    }
+
     public int getRows() {
         return rows;
     }
@@ -28,6 +32,13 @@ public class Grid {
 
     public Block get(int row, int col) {
         return grid[row][col];
+    }
+
+    public Block getNeighbor(int row, int col, Direction d) {
+        row += d.row;
+        col += d.col;
+        if (isInsideGrid(row, col)) return get(row, col);
+        return null;
     }
 
     public Map<Direction, Block> getAround(int row, int col) {
