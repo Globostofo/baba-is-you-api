@@ -4,9 +4,10 @@ import fr.globostofo.baba_is_you_api.api.blocks.*;
 import fr.globostofo.baba_is_you_api.api.blocks.types.AttributeType;
 import fr.globostofo.baba_is_you_api.api.blocks.types.ConnectionType;
 import fr.globostofo.baba_is_you_api.api.blocks.types.EntityType;
+import org.w3c.dom.Attr;
 
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Level {
@@ -62,7 +63,19 @@ public class Level {
     }
 
     private void computeRules() {
-
+        for (Connection isBlock: isBlocks) {
+            Map<Direction, Block> around = grid.getAround(isBlock.getRow(), isBlock.getCol());
+            if (around.get(Direction.TOP) != null && around.get(Direction.TOP).getClass() == Controller.class && around.get(Direction.BOTTOM) != null && around.get(Direction.BOTTOM).getClass() == Attribute.class) {
+                Controller c = (Controller) around.get(Direction.TOP);
+                Attribute a = (Attribute) around.get(Direction.BOTTOM);
+                rules.addRule(c.getType(), a.getType());
+            }
+            if (around.get(Direction.LEFT) != null && around.get(Direction.LEFT).getClass() == Controller.class && around.get(Direction.RIGHT) != null && around.get(Direction.RIGHT).getClass() == Attribute.class) {
+                Controller c = (Controller) around.get(Direction.TOP);
+                Attribute a = (Attribute) around.get(Direction.BOTTOM);
+                rules.addRule(c.getType(), a.getType());
+            }
+        }
     }
 
     private void replaceActors(EntityType from, EntityType to) {
