@@ -28,4 +28,8 @@ public class RulesManager {
         return youEntities;
     }
 
+    @Override
+    public String toString() {
+        return "RulesManager{" + map + ", you=" + youEntities + "}";
+    }
 }

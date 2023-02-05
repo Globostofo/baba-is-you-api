@@ -33,6 +33,8 @@ public class Main {
         lvl.addAttribute(14, 13, AttributeType.STOP);
         lvl.addAttribute(14, 21, AttributeType.PUSH);
 
+        lvl.start();
+
         System.out.println(lvl);
     }
 

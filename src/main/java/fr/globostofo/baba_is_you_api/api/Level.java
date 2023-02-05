@@ -58,7 +58,8 @@ public class Level {
     public String toString() {
         return "Level {\n\trows = " + grid.getRows() +
                 "\n\tcols = " + grid.getCols() +
-                grid.toString() +
+                grid +
+                '\n' + rules +
                 "\n}";
     }
 
@@ -71,8 +72,8 @@ public class Level {
                 rules.addRule(c.getType(), a.getType());
             }
             if (around.get(Direction.LEFT) != null && around.get(Direction.LEFT).getClass() == Controller.class && around.get(Direction.RIGHT) != null && around.get(Direction.RIGHT).getClass() == Attribute.class) {
-                Controller c = (Controller) around.get(Direction.TOP);
-                Attribute a = (Attribute) around.get(Direction.BOTTOM);
+                Controller c = (Controller) around.get(Direction.LEFT);
+                Attribute a = (Attribute) around.get(Direction.RIGHT);
                 rules.addRule(c.getType(), a.getType());
             }
         }
